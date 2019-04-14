@@ -2,7 +2,7 @@
 
 /**
  * Plugin Name: Empty Link Vansiher
- * Plugin URI: https://wpguru.co.uk/2019/03/show-me-the-cookies-how-to-list-all-cookies-on-your-wordpress-site/
+ * Plugin URI: https://wpguru.co.uk
  * Description: Makes empty links disappear by remving them from the DOM
  * Version: 0.1
  * Author: Jay Versluis
@@ -101,7 +101,7 @@ function elv_vanisher () {
 	<p><a href="https://wpguru.co.uk" target="_blank"><img src="<?php  
 	echo plugins_url('images/guru-header-2013.png', __FILE__); ?>" width="300"></a> </p>
 
-<p><a href="https://wpguru.co.uk/2019/03/show-me-the-cookies-how-to-list-all-cookies-on-your-wordpress-site/" target="_blank">Plugin by Jay Versluis</a> | <a href="https://github.com/versluis/Cookies" target="_blank">Contribute on GitHub</a> | <a href="https://patreon.com/versluis" target="_blank">Support me on Patreon</a></p>
+<p><a href="https://wpguru.co.uk/2019/03/show-me-the-cookies-how-to-list-all-cookies-on-your-wordpress-site/" target="_blank">Plugin by Jay Versluis</a> | <a href="https://github.com/versluis/Empty-Link-Vanishers" target="_blank">Contribute on GitHub</a> | <a href="https://patreon.com/versluis" target="_blank">Support me on Patreon</a></p>
 
 <p><span><!-- Social Buttons -->
 
@@ -142,29 +142,21 @@ function elv_vanish_links() {
 	
 	// if we're in the admin interface, don't do anything
 	if (is_admin()) {
-		echo 'This is the admin interface';
 		return;
 	}
 	
-	// let's use jQuery
+	// initialise jQuery
 	wp_enqueue_script ('jquery');
-	// and our own script
-	// $p2HeaderScript = plugins_url ('p2-header-ad-script.js', __FILE__);
-	// wp_enqueue_script ('p2-header-ad-script', $p2HeaderScript, '', '', true);
 	
+	// initialise our own script
 	$elv_vanish = plugins_url('vanisher.js', __FILE__);
 	wp_enqueue_script ('elv_vanish', $elv_vanish, '', '', true);
 	
-	echo '<h1>This is the front end</h1>';
+	// transfer data to JavaScript
+	$elv_data = array (
+	'random_value' => 'Hello from PHP',
+	'elv_class' => get_option ('elv_class'));
 	
-	/*
-	// make all empty links disappear
-	
-	jQuery('.one a').each(function() {
-        if(!jQuery(this).attr('href')) {
-          jQuery(this).parent().hide(); 
-        } 
-    });
-	*/
+	wp_localize_script ('elv_vanish', 'elv_data', $elv_data);
 }
 add_action ('get_footer', 'elv_vanish_links');
