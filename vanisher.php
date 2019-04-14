@@ -50,7 +50,29 @@ function elv_vanisher () {
 	// MAIN AMDIN CONTENT SECTION
 	///////////////////////////////////////
 	
-	// display heading with icon WP style
+	// *****************
+	// Handle Form Data 
+	// *****************
+
+	// save data if necessary
+	if (isset($_POST['elv_submit'])) {
+		update_option ('elv_class', stripslashes ($_POST['elv_class_input']));
+		echo '<div class="updated"><br>Your settings have been saved.<br><br></div>';
+	}
+	
+	// clear data
+	if (isset($_POST['elv_clear'])) {
+		delete_option ('elv_class');
+		echo '<div class="updated"><br>Your settings were cleared.<br><br></div>';
+	}
+	
+	
+	// read in database options
+	$elv_class = get_option ('elv_class');
+	
+	// *******************
+	// Display Admin Menu
+	// *******************
 	?>
     <div class="wrap">
     <div id="icon-index" class="icon32"><br></div>
@@ -59,14 +81,21 @@ function elv_vanisher () {
     <hr>
     <p>All objects that contain the <strong>a</strong> tag with an empty <strong>href</strong> property (i.e. empty links) will be removed from your site.</p>
     <p>You can also add a <strong>.class</strong> or <strong>#id</strong> to specify obejcts in more detail.</p>
-    <p>TEXT BOX GOES HERE</p>
-    <p>SAVE BUTTON GOES HERE</p>
-    <p>
-    <hr>
     
+    <form name="elvForm" method="post" action="">
+    <div class="wrap">
+    <input type="text" name="elv_class_input" size="60" value="<?php echo $elv_class;?>">
+    <br><br>
+    <input type="submit" name="elv_submit" class="button-primary" value="Save Changes">
+    <input type="submit" name="elv_clear" class="button-secondary" value="Clear Changes">
+    </form>
+    <br><br>
+    
+    <hr>
+    </div>
 <?php
     // ***************
-    // DISPLAY FOOTER 
+    // Display Footer 
 	// ***************
 	?>
 	<p><a href="https://wpguru.co.uk" target="_blank"><img src="<?php  
