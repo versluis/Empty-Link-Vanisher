@@ -80,7 +80,7 @@ function elv_vanisher () {
     <p>Makes empty links disappear by removing their parent obejcts from the DOM.</p>
     <hr>
     <p>All objects that contain the <strong>a</strong> tag with an empty <strong>href</strong> property (i.e. empty links) will be removed from your site.</p>
-    <p>You can also add a <strong>.class</strong> or <strong>#id</strong> to specify obejcts in more detail.</p>
+    <p>You can also add a <strong>.class</strong> or <strong>#id</strong> to target obejcts in more detail.</p>
     
     <form name="elvForm" method="post" action="">
     <div class="wrap">
