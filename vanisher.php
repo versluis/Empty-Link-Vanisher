@@ -57,13 +57,11 @@ function elv_vanisher () {
     <h2>Empty Link Vanisher</h2>
     <p>Makes empty links disappear by removing their parent obejcts from the DOM.</p>
     <hr>
-    <p>In its current form, the plugin has no options.</p>
     <p>All objects that contain the <strong>a</strong> tag with an empty <strong>href</strong> property (i.e. empty links) will be removed from your site.</p>
-    <p>Planned features include: 
-    <ul>
-    <li>a selection for posts and pages</li>
-    <li>an editable list of classes to which the plugin applies its magic</li>
-    </ul></p>
+    <p>You can also add a <strong>.class</strong> or <strong>#id</strong> to specify obejcts in more detail.</p>
+    <p>TEXT BOX GOES HERE</p>
+    <p>SAVE BUTTON GOES HERE</p>
+    <p>
     <hr>
     
 <?php
